@@ -14,7 +14,9 @@ class Account {
 		dateCreated = new Date();
 	}
 	Account(int id, double balance){
-		
+		this.id = id;
+		this.balance = balance;
+		dateCreated = new Date();
 	}
 	public int getId() {
 		return id;
@@ -32,22 +34,22 @@ class Account {
 		return annualInterestRate;
 	}
 	public void setAnnualInterestRate(double annualInterestRate) {
-		this.annualInterestRate = annualInterestRate;
+		this.annualInterestRate = annualInterestRate / 100;
 	}
-	public Date getDateCreated() {
-		return dateCreated;
+	public String getDateCreated() {
+		return dateCreated.toString();
 	}
 	double getMonthlyInterestRate() {
-		return 0;
+		return getAnnualInterestRate()/12;
 	}
 	double getMonthlyInterest() {
-		return 0;
+		return getBalance()*getMonthlyInterestRate();
 	}
-	void withdraw() {
-		
+	void withdraw(int money) {
+		setBalance(getBalance()-money);
 	}
-	void deposit() {
-		
+	void deposit(int money) {
+		setBalance(getBalance()+money);	
 	}
 }
 
@@ -55,7 +57,11 @@ public class HW09_B11209017_03 {
 	
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Account account = new Account(1122, 3000);
+		account.setAnnualInterestRate(4.5);
+		account.withdraw(2500);
+		account.deposit(3000);
+		System.out.printf("balance: %f%nmonthly interest: %f%nCreated date:%s",account.getBalance(),account.getMonthlyInterest(),account.getDateCreated());
 
 	}
 
