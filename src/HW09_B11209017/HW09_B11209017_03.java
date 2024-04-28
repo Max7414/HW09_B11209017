@@ -57,7 +57,7 @@ public class HW09_B11209017_03 {
 	
 
 	public static void main(String[] args) {
-		Account account = new Account(1122, 3000);
+		Account account = new Account(1122, 20000);
 		account.setAnnualInterestRate(4.5);
 		account.withdraw(2500);
 		account.deposit(3000);
